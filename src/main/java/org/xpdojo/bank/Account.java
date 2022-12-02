@@ -1,18 +1,20 @@
 package org.xpdojo.bank;
 
+
 public class Account {
 
+	private Money money;
+
 	public Account(Money money) {
-		// TODO Auto-generated constructor stub
+		super();
+		this.money = money;
 	}
 
-	public void deposit(int i) {
-		// TODO Auto-generated method stub
-		
+	public void deposit(int amount) {
+		money.updateBalance(new Money(amount));
 	}
 
-	public Object currentBalance() {
-		// TODO Auto-generated method stub
-		return null;
+	public int currentBalance() {
+		return money.getBalance();
 	}
 }

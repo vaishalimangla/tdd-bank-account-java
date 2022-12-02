@@ -37,4 +37,15 @@ public class Account {
 	public Money withdraw(Money withdrawAmount) {
 		return balance.updateBalance(withdrawAmount.negative());
 	}
+
+	/**
+	 * Transfers the amount from one account to other account.
+	 * 
+	 * @param amount - Amount to transfer
+	 * @param toAccount - Destination Account
+	 */
+	public void transfer(Money amount, Account toAccount) {
+		this.balance = this.withdraw(amount);
+		toAccount.balance = toAccount.deposit(amount);
+	}
 }

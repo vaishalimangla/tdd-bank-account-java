@@ -25,4 +25,13 @@ public class AccountTest {
 		Money blanaceAfterWithdraw = account.withdraw(Money.amountOf(100));
 		assertThat(Money.amountOf(400)).isEqualTo(blanaceAfterWithdraw);
 	}
+	
+	@Test 
+    public void transferAmountToAnotherAccount() {
+        Account destinationAccount = new Account(Money.amountOf(500));       
+        account.transfer(Money.amountOf(100), destinationAccount);
+        
+        assertThat(Money.amountOf(400)).isEqualTo(account.currentBalance());
+        assertThat(Money.amountOf(600)).isEqualTo(destinationAccount.currentBalance());
+    }
 }

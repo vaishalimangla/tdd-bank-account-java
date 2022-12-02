@@ -1,6 +1,5 @@
 package org.xpdojo.bank;
 
-
 public class Account {
 
 	private Money money;
@@ -18,8 +17,7 @@ public class Account {
 		return money.getBalance();
 	}
 
-	public void withdraw(int i) {
-		// TODO Auto-generated method stub
-		
+	public void withdraw(int amount) {
+		money.updateBalance(new Money(-amount));	// Deducting the balance		
 	}
 }

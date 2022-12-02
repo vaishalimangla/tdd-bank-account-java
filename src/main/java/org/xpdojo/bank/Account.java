@@ -2,22 +2,39 @@ package org.xpdojo.bank;
 
 public class Account {
 
-	private Money money;
+	private Money balance;
 
-	public Account(Money money) {
+	public Account(Money balance) {
 		super();
-		this.money = money;
+		this.balance = balance;
 	}
 
-	public void deposit(int amount) {
-		money.updateBalance(new Money(amount));
+	/**
+	 * Deposits the amount into the account.
+	 * 
+	 * @param amount - The deposit amount
+	 * @return
+	 */
+	public Money deposit(Money amount) {
+		return balance.updateBalance(amount);
 	}
 
-	public int currentBalance() {
-		return money.getBalance();
+	/**
+	 * This method returns the current account balance.
+	 * 
+	 * @return The balance
+	 */
+	public Money currentBalance() {
+		return balance;
 	}
 
-	public void withdraw(int amount) {
-		money.updateBalance(new Money(-amount));	// Deducting the balance		
+	/**
+	 * Withdraws the amount from the account. 
+	 * 
+	 * @param withdrawAmount - The amount to withdraw
+	 * @return
+	 */
+	public Money withdraw(Money withdrawAmount) {
+		return balance.updateBalance(withdrawAmount.negative());
 	}
 }

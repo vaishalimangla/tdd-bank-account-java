@@ -2,21 +2,27 @@ package org.xpdojo.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class AccountTest {
 
-    @Test
-    public void depositAnAmountToIncreaseTheBalance() {
-        Account account = new Account(new Money(500));
-        account.deposit(500);
-        assertThat(1000).isEqualTo(account.currentBalance());
-    }
-    
-    @Test 
-    public void withdrawAmount() {
-    	Account account = new Account(new Money(500));
-    	account.withdraw(100);
-        assertThat(400).isEqualTo(account.currentBalance());
-    }
+	private Account account;
+
+	@BeforeEach
+	public void setUp() {
+		account = new Account(Money.amountOf(500));
+	}
+
+	@Test
+	public void depositAnAmountToIncreaseTheBalance() {
+		Money blanaceAfterDeposit = account.deposit(Money.amountOf(500));
+		assertThat(Money.amountOf(1000)).isEqualTo(blanaceAfterDeposit);
+	}
+
+	@Test
+	public void withdrawAmount() {
+		Money blanaceAfterWithdraw = account.withdraw(Money.amountOf(100));
+		assertThat(Money.amountOf(400)).isEqualTo(blanaceAfterWithdraw);
+	}
 }

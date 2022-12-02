@@ -17,4 +17,9 @@ public class Account {
 	public int currentBalance() {
 		return money.getBalance();
 	}
+
+	public void withdraw(int i) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -5,4 +5,8 @@ package org.xpdojo.bank;
  * This class should have no accessor methods.
  */
 public class Money {
+
+	public Money(int i) {
+		// TODO Auto-generated constructor stub
+	}
 }

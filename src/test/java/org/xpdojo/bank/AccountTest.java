@@ -2,6 +2,7 @@ package org.xpdojo.bank;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,13 +26,26 @@ public class AccountTest {
 		Money blanaceAfterWithdraw = account.withdraw(Money.amountOf(100));
 		assertThat(Money.amountOf(400)).isEqualTo(blanaceAfterWithdraw);
 	}
-	
-	@Test 
-    public void transferAmountToAnotherAccount() {
-        Account destinationAccount = new Account(Money.amountOf(500));       
-        account.transfer(Money.amountOf(100), destinationAccount);
-        
-        assertThat(Money.amountOf(400)).isEqualTo(account.currentBalance());
-        assertThat(Money.amountOf(600)).isEqualTo(destinationAccount.currentBalance());
-    }
+
+	@Test
+	public void withdrawAmountGreaterThanBalance() {
+		Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			account.withdraw(new Money(1000)); // Withdraw more than account balance
+		});
+
+		String expectedMessage = "Invalid input or Insufficient Balance";
+		String actualMessage = exception.getMessage();
+
+		assertThat(expectedMessage).isEqualTo(actualMessage);
+	}
+
+	@Test
+	public void transferAmountToAnotherAccount() {
+		Account destinationAccount = new Account(Money.amountOf(500));
+		account.transfer(Money.amountOf(100), destinationAccount);
+
+		assertThat(Money.amountOf(400)).isEqualTo(account.currentBalance());
+		assertThat(Money.amountOf(600)).isEqualTo(destinationAccount.currentBalance());
+	}
+
 }

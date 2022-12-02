@@ -30,11 +30,15 @@ public class Account {
 
 	/**
 	 * Withdraws the amount from the account. 
+	 * Exception if the withdraw amount exceeds the available balance in the account.
 	 * 
 	 * @param withdrawAmount - The amount to withdraw
 	 * @return
 	 */
 	public Money withdraw(Money withdrawAmount) {
+		if (withdrawAmount == null || withdrawAmount.isGreaterThan(balance))
+			throw new IllegalArgumentException("Invalid input or Insufficient Balance");
+		
 		return balance.updateBalance(withdrawAmount.negative());
 	}
 

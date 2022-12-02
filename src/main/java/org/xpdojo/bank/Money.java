@@ -24,6 +24,10 @@ public class Money {
 	public Money negative() {
 		return amountOf(-amount);
 	}
+	
+	public boolean isGreaterThan(Money money) {
+		return this.amount > money.amount;
+	}
 
 	@Override
 	public int hashCode() {
